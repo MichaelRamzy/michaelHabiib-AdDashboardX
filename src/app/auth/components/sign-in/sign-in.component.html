@@ -1,0 +1,75 @@
+<div id="recaptcha-container"></div>
+
+<div class="username-form-container">
+  <h2>Welcome!</h2>
+  <form [formGroup]="phonenumberForm">
+    <div class="input-container" *ngIf="isVerificationCodeNotSent">
+      <mat-form-field appearance="outline">
+        <mat-label> Phonenumber</mat-label>
+        <input
+          matInput
+          placeholder="+201222353187"
+          formControlName="phoneNumber"
+          minlength="13"
+          maxlength="13"
+        />
+        <mat-error>
+          <span
+            *ngIf="phonenumberForm.controls['phoneNumber'].errors?.['required']"
+            >Phone number is required</span
+          >
+          <span
+            *ngIf="
+              phonenumberForm.controls['phoneNumber'].hasError('minlength') ||
+              phonenumberForm.controls['phoneNumber'].hasError('maxlength')
+            "
+          >
+            Phonenumber must be 13 chracter
+          </span>
+        </mat-error>
+      </mat-form-field>
+
+      <button
+        class="submit-button"
+        (click)="sendVerificationCode()"
+        [disabled]="!phonenumberForm.valid"
+      >
+        Send Verification Code
+      </button>
+    </div>
+  </form>
+  <form [formGroup]="verificationCode">
+    <div class="input-container" *ngIf="!isVerificationCodeNotSent">
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Verfiction Code</mat-label>
+        <input
+          matInput
+          placeholder="531267"
+          formControlName="verificationCode"
+        />
+        <mat-error
+          *ngIf="
+            verificationCode.controls['verificationCode'].invalid &&
+            verificationCode.controls['verificationCode'].touched
+          "
+        >
+          <span
+            *ngIf="verificationCode.controls['verificationCode'].errors?.['required']"
+            >Verification code is required</span
+          >
+          <span
+            *ngIf="verificationCode.controls['verificationCode'].errors?.['invalidVerificationCode']"
+            >Invalid verification code</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <button
+        class="submit-button"
+        (click)="verifyCode()"
+        [disabled]="!verificationCode.valid"
+      >
+        Verify Code
+      </button>
+    </div>
+  </form>
+</div>

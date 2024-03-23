@@ -7,15 +7,22 @@ import { StoreModule } from '@ngrx/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule} from '@angular/fire/compat'
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-const firebaseConfig = {
-  apiKey: "AIzaSyB5-S577JQ5k1VZ3Udh_2kMXfJSRxeOF74",
-  authDomain: "addashboardx.firebaseapp.com",
-  projectId: "addashboardx",
-  storageBucket: "addashboardx.appspot.com",
-  messagingSenderId: "314091997496",
-  appId: "1:314091997496:web:38290392ca2bbb218259cd",
-  measurementId: "G-Q6QDP5YF7C"
-};
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { AuthModule } from './auth/auth.module';
+const environment : any = {
+  production : false,
+  firebaseConfig : {
+    apiKey: "AIzaSyB5-S577JQ5k1VZ3Udh_2kMXfJSRxeOF74",
+    authDomain: "addashboardx.firebaseapp.com",
+    projectId: "addashboardx",
+    storageBucket: "addashboardx.appspot.com",
+    messagingSenderId: "314091997496",
+    appId: "1:314091997496:web:38290392ca2bbb218259cd",
+    measurementId: "G-Q6QDP5YF7C"
+    }
+}
+
 @NgModule({
   declarations: [
     AppComponent
@@ -23,10 +30,13 @@ const firebaseConfig = {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebaseConfig), 
     AngularFireAuthModule,
+    AngularFirestoreModule,
     StoreModule.forRoot({}, {}),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DashboardModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
