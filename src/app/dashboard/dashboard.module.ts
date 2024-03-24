@@ -6,8 +6,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MaterialModule } from '../material/material.module';
+import { SprintComponent } from './sprint/sprint.component';
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, SprintComponent],
   imports: [
     CommonModule,
     AngularFireAuthModule,
@@ -15,6 +17,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     dashboardRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MaterialModule
   ],
 })
 export class DashboardModule {}

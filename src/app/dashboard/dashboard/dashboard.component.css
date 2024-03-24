@@ -1,0 +1,10 @@
+
+mat-drawer-content{
+    background-color: #fefcfe !important;
+}
+mat-drawer{
+    background-color: #f4f4f8 !important;
+}
+.example-container{
+    min-height: 100vh;
+}

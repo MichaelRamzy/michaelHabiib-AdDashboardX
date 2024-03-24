@@ -1,0 +1,20 @@
+<ng-container >
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ sprint }}
+        </mat-panel-title>
+        <!-- You can add any additional information here if needed -->
+      </mat-expansion-panel-header>
+      <!-- Iterate over tasks within the sprint -->
+      <ng-container *ngFor="let task of data[sprint]">
+        <div>
+          <p>Title: {{ task.title }}</p>
+          <p>Status: {{ task.status }}</p>
+          <p>Priority: {{ task.priority }}</p>
+          <!-- Add more task details here -->
+          <!-- You can also display comments here if needed -->
+        </div>
+      </ng-container>
+    </mat-expansion-panel>
+  </ng-container>
